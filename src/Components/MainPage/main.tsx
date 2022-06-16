@@ -3,6 +3,7 @@ import { faAnglesLeft } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import React from 'react';
 import './main.css';
+import Card from '../Card/card';
 interface Iprops {
     isActive: Boolean;
     toggleClass:()=> void;
@@ -20,7 +21,14 @@ const Main = (props:Iprops) => {
         <div className="separator"></div>
         <div className="row text-white">
         <h4 className="display-6 text-white">My Tech Stack</h4>
-          <div className="col-lg-7">
+        <div className='row'>
+        <div className='col-12'>
+          <Card/>
+        </div>
+        </div>
+        <div className='row'>
+          <div className="col-lg-9">
+          
             <p className="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             <p className="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
@@ -39,7 +47,8 @@ const Main = (props:Iprops) => {
               dolor.
             </p>
           </div>
-          <div className="col-lg-5">
+          </div>
+          <div className="col-lg-5 col-md-6">
             <p className="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
               dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             <p className="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
@@ -51,6 +60,7 @@ const Main = (props:Iprops) => {
               dolor.
             </p>
           </div>
+          
         </div>
       </div>
   )
