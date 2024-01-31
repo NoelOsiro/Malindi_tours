@@ -26,14 +26,15 @@ Welcome to the Malindi Cultural Heritage Platform! 🌍✨
 
 ### Technology Stack:
 
-- **Languages:** JavaScript (React, Node.js)
-- **Frameworks:** Next.js (Frontend), Express (Backend)
-- **Database:** PostgreSQL
-- **Mapping API:** Mapbox
-- **E-commerce:** Django Oscar
-- **Version Control:** Git (GitHub Flow)
-- **Testing:** Jest, React Testing Library
+- **Languages:** [JavaScript](https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png)
+- **Frameworks:** [React](https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg), [Node.js](https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg), [Next.js](https://assets.vercel.com/image/upload/v1607554385/repositories/next-js/next-logo.png)
+- **Database:** [PostgreSQL](https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg)
+- **Mapping API:** [Mapbox](https://upload.wikimedia.org/wikipedia/commons/7/78/Mapbox_logo_2021.svg)
+- **E-commerce:** [Django Oscar](https://www.djangoproject.com/s/img/logos/django-logo-positive.png)
+- **Version Control:** [Git](https://upload.wikimedia.org/wikipedia/commons/e/e0/Git-logo.svg)
+- **Testing:** [Jest](https://jestjs.io/img/jest.svg), [React Testing Library](https://testing-library.com/img/octopus-128x128.png)
 
+Feel free to adjust the formatting as needed for your README file.
 ### Technology Alternatives:
 
 - For the backend framework, Express.js was chosen for its simplicity and compatibility with Next.js.
