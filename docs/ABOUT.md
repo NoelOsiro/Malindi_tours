@@ -8,11 +8,9 @@ Welcome to the Malindi Cultural Heritage Platform! 🌍✨
 
 ## Team Members:
 
-- **Noel Osiro**
+- ![**Noel Osiro**](https://github.com/NoelOsiro)
   - Project Manager & Full Stack Developer
-- **Noel Osiro**
   - UI/UX Designer & Frontend Developer
-- **Noel Osiro**
   - Content Curator & Cultural Researcher
 
 ## Roles Decision
