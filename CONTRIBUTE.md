@@ -1,6 +1,3 @@
-Certainly! Defining clear and comprehensive contribution guidelines is essential for attracting and managing contributions to your Malindi Cultural Heritage Platform. Here's a template you can use and customize for your project:
-
----
 
 # Contribution Guidelines
 
