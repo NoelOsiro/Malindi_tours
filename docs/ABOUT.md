@@ -34,8 +34,6 @@ Welcome to the Malindi Cultural Heritage Platform! 🌍✨
 - **Version Control:** <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Git-logo.svg" width="20" height="20">
 - **Testing:** <img src="https://jestjs.io/img/jest.svg" width="20" height="20"> <img src="https://testing-library.com/img/octopus-128x128.png" width="20" height="20">
 
-
-Feel free to adjust the formatting as needed for your README file.
 ### Technology Alternatives:
 
 - For the backend framework, Express.js was chosen for its simplicity and compatibility with Next.js.
