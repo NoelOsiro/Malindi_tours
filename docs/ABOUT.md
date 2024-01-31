@@ -26,13 +26,14 @@ Welcome to the Malindi Cultural Heritage Platform! 🌍✨
 
 ### Technology Stack:
 
-- **Languages:** [JavaScript](https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png)
-- **Frameworks:** [React](https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg), [Node.js](https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg), [Next.js](https://assets.vercel.com/image/upload/v1607554385/repositories/next-js/next-logo.png)
-- **Database:** [PostgreSQL](https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg)
-- **Mapping API:** [Mapbox](https://upload.wikimedia.org/wikipedia/commons/7/78/Mapbox_logo_2021.svg)
-- **E-commerce:** [Django Oscar](https://www.djangoproject.com/s/img/logos/django-logo-positive.png)
-- **Version Control:** [Git](https://upload.wikimedia.org/wikipedia/commons/e/e0/Git-logo.svg)
-- **Testing:** [Jest](https://jestjs.io/img/jest.svg), [React Testing Library](https://testing-library.com/img/octopus-128x128.png)
+- **Languages:** <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" width="20" height="20"> 
+- **Frameworks:** <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" width="20" height="20"> <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Node.js_logo.svg" width="20" height="20"> <img src="https://assets.vercel.com/image/upload/v1607554385/repositories/next-js/next-logo.png" width="20" height="20">
+- **Database:** <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" width="20" height="20">
+- **Mapping API:** <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Mapbox_logo_2021.svg" width="20" height="20">
+- **E-commerce:** <img src="https://www.djangoproject.com/s/img/logos/django-logo-positive.png" width="20" height="20">
+- **Version Control:** <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Git-logo.svg" width="20" height="20">
+- **Testing:** <img src="https://jestjs.io/img/jest.svg" width="20" height="20"> <img src="https://testing-library.com/img/octopus-128x128.png" width="20" height="20">
+
 
 Feel free to adjust the formatting as needed for your README file.
 ### Technology Alternatives:
