@@ -31,13 +31,25 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Version Control Setup
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+We follow a version control strategy to manage our project's codebase efficiently. Here's an overview of our version control setup:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. **Version Control Strategy:**
+   - We utilize the [GitHub Flow](https://guides.github.com/introduction/flow/) as our version control strategy. This approach emphasizes short-lived branches, continuous integration, and frequent releases.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+2. **Initial Development Branch:**
+   - Our initial development branch is named `development`. All feature branches are created from and merged back into this branch during the development process.
+
+3. **Branch Protection Rules:**
+   - To ensure code quality and prevent accidental disruptions to the main branch (`main`), we've set up branch protection rules for the `main` branch. These rules include:
+      - **Require pull request reviews before merging:** At least one approving review is required before a pull request can be merged.
+      - **Require status checks to pass:** Ensure that continuous integration tests and other checks pass before merging.
+      - **Include administrators:** Even administrators must follow the same process to merge changes.
+
+By following this version control strategy, we aim to maintain a clean and stable main branch while allowing for efficient collaboration and feature development in parallel branches.
+
+For more details on our branching model and workflow, please refer to our [Contribution Guidelines](./CONTRIBUTING.md).
 
 ## Learn More
 
