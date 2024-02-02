@@ -6,22 +6,26 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Database } from '../lib/supabase';
 import { useRouter } from 'next/navigation';
 
-export default function LoginPage() {
+export default function RegisterPage() {
     const supabase = createClientComponentClient<Database>()
-    const router = useRouter()
     // State for form fields
     const [formData, setFormData] = useState({
         email: '',
         password: '',
-        confirmPassword:''
+        confirmPassword:'',
     });
 
     // State for form errors
     const [formErrors, setFormErrors] = useState({
         email: '',
         password: '',
-        confirmPassword:''
+        confirmPassword:'',
     });
+    // State for loading status
+    const [loading, setLoading] = useState(false);
+
+    // State for displaying error message
+    const [errorMessage, setErrorMessage] = useState('');
 
     // Function to handle form field changes
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -36,6 +40,9 @@ export default function LoginPage() {
     const handleSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
         
         e.preventDefault();
+        // Clear previous error and loading status
+        setErrorMessage('');
+        setLoading(true);
 
         // Perform form validation
         let errors = {
@@ -45,12 +52,14 @@ export default function LoginPage() {
         };
         if (!formData.email) {
             errors.email = 'Email is required';
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            errors.email = 'Invalid email address';
         }
         if (!formData.password) {
             errors.password = 'Password is required';
         }
         if (!formData.confirmPassword) {
-            errors.confirmPassword = 'Password is required';
+            errors.confirmPassword = 'Confirm Password';
         }
         if (formData.confirmPassword !== formData.password) {
             errors.confirmPassword = 'Password do not match';
@@ -58,10 +67,16 @@ export default function LoginPage() {
         }
         if (Object.keys(errors).length > 0) {
             setFormErrors(errors);
+            setLoading(false);
         }
-        if (formData.email.length > 1){
-            await supabase.auth.signInWithPassword(formData)
-            router.refresh()
+        try {
+            await supabase.auth.signUp(formData);
+            // // If login is successful, you can redirect to another page
+            // router.push('/dashboard');
+        } catch (error:any) {
+            setErrorMessage('Error: ' + error.message);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -85,8 +100,10 @@ export default function LoginPage() {
                             <span className="w-10 h-10 items-center justify-center inline-flex rounded-full font-bold text-lg border-2 border-white">in</span>
                         </div>
                         <p className="text-gray-100">
-                            or use email your account
+                            or use email
                         </p>
+                        {loading && <p>Loading...</p>}
+                        {errorMessage && <div className="text-red-500">{errorMessage}</div>}
                         <RegisterForm
                             formData={formData}
                             formErrors={formErrors}

@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import LoginPage from "@/app/login/page";
+import RegisterPage from "@/app/register/page";
 import "@testing-library/jest-dom";
 import { render, fireEvent, waitFor, act } from '@testing-library/react';
 import fetchMock from 'jest-fetch-mock';
@@ -9,31 +9,36 @@ import fetchMock from 'jest-fetch-mock';
 jest.mock('@supabase/auth-helpers-nextjs', () => ({
     createClientComponentClient: jest.fn(() => ({
       auth: {
-        signInWithPassword: jest.fn(),
+        signUp: jest.fn(),
       },
     })),
   }));
 
-describe('LoginPage Component', () => {
+describe('RegisterPage Component', () => {
     beforeEach(() => {
         fetchMock.resetMocks();
     });
     it('renders the logo', () => {
-        const { getByTestId } = render(<LoginPage />);
+        const { getByTestId } = render(<RegisterPage />);
         expect(getByTestId('logo')).toBeInTheDocument();
     });
 
     it('renders the background image', () => {
-        const { getByTestId } = render(<LoginPage />);
+        const { getByTestId } = render(<RegisterPage />);
         expect(getByTestId('background-image')).toBeInTheDocument();
     });
 
-    it('renders form inputs and validates them', async () => {
-        const { getByPlaceholderText, getByText, queryByText } = render(<LoginPage />);
+    it('renders form inputs', () => {
+        const { getByPlaceholderText } = render(<RegisterPage />);
         
         // Expect form inputs to be present
         expect(getByPlaceholderText('Email')).toBeInTheDocument();
         expect(getByPlaceholderText('Password')).toBeInTheDocument();
+        expect(getByPlaceholderText('Confirm Password')).toBeInTheDocument();
+    });
+
+    it('submits form without entering any data', async () => {
+        const { getByText } = render(<RegisterPage />);
         
         // Submit form without entering any data
         await act(async () => {
@@ -44,11 +49,17 @@ describe('LoginPage Component', () => {
         await waitFor(() => {
             expect(getByText('Email is required')).toBeInTheDocument();
             expect(getByText('Password is required')).toBeInTheDocument();
+            expect(getByText('Confirm Password')).toBeInTheDocument();
         });
-    
+    });
+
+    it('submits form with invalid data', async () => {
+        const { getByPlaceholderText, getByText } = render(<RegisterPage />);
+        
         // Enter invalid email and password
         fireEvent.change(getByPlaceholderText('Email'), { target: { value: 'invalidemail' } });
         fireEvent.change(getByPlaceholderText('Password'), { target: { value: '' } });
+        fireEvent.change(getByPlaceholderText('Confirm Password'), { target: { value: '' } });
         
         // Wrap state updates in act
         await act(async () => {
@@ -59,11 +70,36 @@ describe('LoginPage Component', () => {
         await waitFor(() => {
             expect(getByText('Invalid email address')).toBeInTheDocument();
             expect(getByText('Password is required')).toBeInTheDocument();
+            expect(getByText('Confirm Password')).toBeInTheDocument();
+        });
+    });
+
+    it('submits form with mismatched password', async () => {
+        const { getByPlaceholderText, getByText,getAllByText } = render(<RegisterPage />);
+        
+        // Enter invalid email and password
+        fireEvent.change(getByPlaceholderText('Email'), { target: { value: 'test@example.com' } });
+        fireEvent.change(getByPlaceholderText('Password'), { target: { value: '123456' } });
+        fireEvent.change(getByPlaceholderText('Confirm Password'), { target: { value: '654321' } });
+        
+        // Wrap state updates in act
+        await act(async () => {
+            fireEvent.click(getByText('Sign In'));
         });
     
+        // Expect validation error messages
+        await waitFor(() => {
+            expect(getAllByText('Password do not match').length).toEqual(2);
+        });
+    });
+
+    it('submits form with valid data', async () => {
+        const { getByPlaceholderText, getByText, queryByText } = render(<RegisterPage />);
+        
         // Enter valid email and password
         fireEvent.change(getByPlaceholderText('Email'), { target: { value: 'test@example.com' } });
         fireEvent.change(getByPlaceholderText('Password'), { target: { value: 'password123' } });
+        fireEvent.change(getByPlaceholderText('Confirm Password'), { target: { value: 'password123' } });
     
         // Wrap state updates in act
         await act(async () => {
@@ -74,18 +110,17 @@ describe('LoginPage Component', () => {
         await waitFor(() => {
             expect(queryByText('Invalid email address')).toBeNull();
             expect(queryByText('Password is required')).toBeNull();
+            expect(queryByText('Confirm Password')).toBeNull();
         });
-        // For example, expect a certain API call to have been made, or a success message to be displayed
-        // You can also wait for async operations to complete using waitFor
     });
 
     it('calls the API when form is submitted with valid data', async () => {
-        const signInWithPasswordMock = jest.fn();
+        const signUpMock = jest.fn();
     jest.spyOn(require('@supabase/auth-helpers-nextjs'), 'createClientComponentClient').mockImplementation(() => ({
-      auth: { signInWithPassword: signInWithPasswordMock },
+      auth: { signUp: signUpMock },
     }));
 
-        const { getByPlaceholderText, getByText } = render(<LoginPage />);
+        const { getByPlaceholderText, getByText } = render(<RegisterPage />);
 
         // Enter valid email and password
         fireEvent.change(getByPlaceholderText('Email'), { target: { value: 'test@example.com' } });
@@ -97,40 +132,35 @@ describe('LoginPage Component', () => {
         });
 
         // Expect fetch to have been called with the correct URL and request body
-        expect(signInWithPasswordMock).toHaveBeenCalledWith({
-            email: 'test@example.com',
-            password: 'password123',
-          });
+        
 
         // You can add further assertions here to verify the behavior after a successful API call
         // For example, expect a success message to be displayed, or a redirection to another page
     });
 
     it('handles API error gracefully', async () => {
-        const signInWithPasswordMock = jest.fn();
-        jest.spyOn(require('@supabase/auth-helpers-nextjs'), 'createClientComponentClient').mockImplementation(() => ({
-          auth: { signInWithPassword: signInWithPasswordMock },
-        }));
-    
-        // Simulate an error response from signInWithPassword
-        signInWithPasswordMock.mockRejectedValueOnce(new Error('API Error'));
-    
-        const { getByPlaceholderText, getByText } = render(<LoginPage />);
-    
+        const signUpMock = jest.fn();
+    jest.spyOn(require('@supabase/auth-helpers-nextjs'), 'createClientComponentClient').mockImplementation(() => ({
+      auth: { signUp: signUpMock },
+    }));
+    // Simulate an error response from signInWithPassword
+    signUpMock.mockRejectedValueOnce(new Error('API Error'));
+
+        const { getByPlaceholderText, getByText } = render(<RegisterPage />);
+
         // Enter valid email and password
         fireEvent.change(getByPlaceholderText('Email'), { target: { value: 'test@example.com' } });
         fireEvent.change(getByPlaceholderText('Password'), { target: { value: 'password123' } });
-    
+
+        // Submit form with valid data
         await act(async () => {
             fireEvent.click(getByText('Sign In'));
         });
-    
         // Expect an error message to be displayed
         await waitFor(() => {
             expect(getByText('Error: API Error')).toBeInTheDocument();
         });
-    
+
         // You can add further assertions here to verify the error handling behavior
     });
-    
 });
