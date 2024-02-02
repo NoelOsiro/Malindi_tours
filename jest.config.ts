@@ -8,6 +8,9 @@ const createJestConfig = nextJest({
 // Add any custom config to be passed to Jest
 const customJestConfig = {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+  transformIgnorePatterns: [
+    "node_modules/(?!@polkadot|@babel/runtime/helpers/esm/)"
+  ],
   testEnvironment: "jsdom",
 };
 

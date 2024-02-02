@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
     const supabase = createClientComponentClient<Database>()
-    const router = useRouter()
     // State for form fields
     const [formData, setFormData] = useState({
         email: '',
@@ -20,38 +19,55 @@ export default function LoginPage() {
         email: '',
         password: '',
     });
+    // State for loading status
+    const [loading, setLoading] = useState(false);
+
+    // State for displaying error message
+    const [errorMessage, setErrorMessage] = useState('');
 
     // Function to handle form field changes
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData({
-       ...formData,
+            ...formData,
             [name]: value,
         });
     };
 
     // Function to handle form submission
     const handleSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
-        
+
         e.preventDefault();
 
+        // Clear previous error and loading status
+        setErrorMessage('');
+        setLoading(true);
         // Perform form validation
         let errors = {
             email: '',
             password: '',
         };
+        
         if (!formData.email) {
             errors.email = 'Email is required';
+        } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+            errors.email = 'Invalid email address';
         }
         if (!formData.password) {
             errors.password = 'Password is required';
         }
         if (Object.keys(errors).length > 0) {
             setFormErrors(errors);
+            setLoading(false);
         }
-        if (formData.email.length > 1){
-            await supabase.auth.signInWithPassword(formData)
-            router.refresh()
+        try {
+            await supabase.auth.signInWithPassword(formData);
+            // // If login is successful, you can redirect to another page
+            // router.push('/dashboard');
+        } catch (error:any) {
+            setErrorMessage('Error: ' + error.message);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -77,6 +93,8 @@ export default function LoginPage() {
                         <p className="text-gray-100">
                             or use email your account
                         </p>
+                        {loading && <p>Loading...</p>}
+                        {errorMessage && <div className="text-red-500">{errorMessage}</div>}
                         <LoginForm
                             formData={formData}
                             formErrors={formErrors}
