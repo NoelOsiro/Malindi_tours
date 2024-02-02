@@ -32,6 +32,7 @@ export default function LoginPage() {
 
     // Function to handle form submission
     const handleSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
+        
         e.preventDefault();
 
         // Perform form validation
@@ -47,11 +48,11 @@ export default function LoginPage() {
         }
         if (Object.keys(errors).length > 0) {
             setFormErrors(errors);
-            return;
         }
-        await supabase.auth.signInWithPassword(formData)
-          router.refresh()
-
+        if (formData.email.length > 1){
+            await supabase.auth.signInWithPassword(formData)
+            router.refresh()
+        }
     };
 
     return (
