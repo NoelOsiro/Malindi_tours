@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent } from 'react';
+import React, { ChangeEvent, FormEvent, MouseEvent } from 'react';
 
 interface LoginFormProps {
     formData: {
@@ -10,12 +10,12 @@ interface LoginFormProps {
         password: string;
     };
     handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    handleSubmit: (e: FormEvent<HTMLFormElement>) => void;
+    handleSubmit: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({ formData, formErrors, handleInputChange, handleSubmit }) => {
     return (
-        <form onSubmit={handleSubmit}>
+        <div >
             <h2 className="text-4xl font-semibold text-white mb-8">Welcome back!</h2>
             {/* Email input */}
             <div className="mb-4">
@@ -47,12 +47,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ formData, formErrors, handleInput
             </div>
             {/* Submit button */}
             <button
-                type="submit"
+                onClick={handleSubmit}
                 className="w-full bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
             >
                 Sign In
             </button>
-        </form>
+        </div>
     );
 }
 
