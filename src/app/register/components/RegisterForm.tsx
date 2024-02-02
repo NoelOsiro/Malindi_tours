@@ -66,7 +66,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ formData, formErrors, handl
                 onClick={handleSubmit}
                 className="w-full bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
             >
-                Sign In
+                Sign Up
             </button>
         </div>
     );

@@ -42,7 +42,7 @@ describe('RegisterPage Component', () => {
         
         // Submit form without entering any data
         await act(async () => {
-            fireEvent.click(getByText('Sign In'));
+            fireEvent.click(getByText('Sign Up'));
         });
     
         // Expect validation error messages
@@ -63,7 +63,7 @@ describe('RegisterPage Component', () => {
         
         // Wrap state updates in act
         await act(async () => {
-            fireEvent.click(getByText('Sign In'));
+            fireEvent.click(getByText('Sign Up'));
         });
     
         // Expect validation error messages
@@ -84,7 +84,7 @@ describe('RegisterPage Component', () => {
         
         // Wrap state updates in act
         await act(async () => {
-            fireEvent.click(getByText('Sign In'));
+            fireEvent.click(getByText('Sign Up'));
         });
     
         // Expect validation error messages
@@ -103,7 +103,7 @@ describe('RegisterPage Component', () => {
     
         // Wrap state updates in act
         await act(async () => {
-            fireEvent.click(getByText('Sign In'));
+            fireEvent.click(getByText('Sign Up'));
         });
     
         // You can add assertions here to check for successful form submission behavior
@@ -128,7 +128,7 @@ describe('RegisterPage Component', () => {
 
         // Submit form with valid data
         await act(async () => {
-            fireEvent.click(getByText('Sign In'));
+            fireEvent.click(getByText('Sign Up'));
         });
 
         // Expect fetch to have been called with the correct URL and request body
@@ -154,7 +154,7 @@ describe('RegisterPage Component', () => {
 
         // Submit form with valid data
         await act(async () => {
-            fireEvent.click(getByText('Sign In'));
+            fireEvent.click(getByText('Sign Up'));
         });
         // Expect an error message to be displayed
         await waitFor(() => {
