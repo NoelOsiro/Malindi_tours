@@ -51,13 +51,13 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ formData, formErrors, handl
             <div className="mb-6">
                 <input
                     type="password"
-                    name="confirm_password"
+                    name="confirmPassword"
                     placeholder="Confirm Password"
                     className="block w-full p-3 rounded bg-gray-800 border border-gray-700 placeholder-gray-500 focus:outline-none focus:border-indigo-500"
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
                 />
-                {formErrors.password && (
+                {formErrors.confirmPassword && (
                     <p className="text-red-500 mt-1">{formErrors.confirmPassword}</p>
                 )}
             </div>
