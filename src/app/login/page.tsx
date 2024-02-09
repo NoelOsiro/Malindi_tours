@@ -5,6 +5,7 @@ import LoginForm from './components/LoginForm';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Database } from '../lib/supabase';
 import { useRouter } from 'next/navigation';
+import Alert from '@/components/Alert/Alert';
 
 export default function LoginPage() {
     const supabase = createClientComponentClient<Database>()
@@ -93,7 +94,7 @@ export default function LoginPage() {
                             or use email your account
                         </p>
                         {loading && <p>Loading...</p>}
-                        {errorMessage && <div className="text-red-500">{errorMessage}</div>}
+                        {errorMessage && <Alert type="error" message={errorMessage} />}
                         <LoginForm
                             formData={formData}
                             formErrors={formErrors}

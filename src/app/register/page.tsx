@@ -5,6 +5,7 @@ import RegisterForm from './components/RegisterForm';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Database } from '../lib/supabase';
 import { useRouter } from 'next/navigation';
+import Alert from '@/components/Alert/Alert';
 
 export default function RegisterPage() {
     const supabase = createClientComponentClient<Database>()
@@ -102,7 +103,7 @@ export default function RegisterPage() {
                             or use email
                         </p>
                         {loading && <p>Loading...</p>}
-                        {errorMessage && <div className="text-red-500">{errorMessage}</div>}
+                        {errorMessage && <Alert type="error" message={errorMessage} />}
                         <RegisterForm
                             formData={formData}
                             formErrors={formErrors}
