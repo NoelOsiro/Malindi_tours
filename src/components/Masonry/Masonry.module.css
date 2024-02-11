@@ -1,16 +1,28 @@
-.masonry {
-  columns: 4;
-  column-gap: 16px;
-}
 
+.myMasonGrid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -30px; /* gutter size offset */
+  width: auto;
+}
+.myMasonGrid_column {
+  padding-left: 30px; /* gutter size */
+  background-clip: padding-box;
+}
 .grid {
-  display: inline-block;
+  display: flex;
   margin-bottom: 16px;
   position: relative;
+  border-radius: 10px;
+}
+.grid > img {
+  border-radius: 10px;
 }
 
 .grid__body {
   position: absolute;
+  
   left: 0;
   right: 0;
   top: 0;

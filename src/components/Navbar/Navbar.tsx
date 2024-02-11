@@ -6,7 +6,7 @@ const Navbar = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-          const isTop = window.scrollY < 100;
+          const isTop = window.scrollY < 10;
           if (isTop !== scrolling) {
             setScrolling(isTop);
           }
