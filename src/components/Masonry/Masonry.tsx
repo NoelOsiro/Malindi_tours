@@ -1,4 +1,5 @@
 import React from 'react';
+import MasonryLayout from '@/components/Masonry/MasonryLayout';
 import styles from './Masonry.module.css'; // Import your CSS file
 
 // Define types for card data
@@ -12,20 +13,26 @@ interface Card {
 
 // Sample card data
 const cardData: Card[] = [
-  { id: 1, imgUrl: 'https://source.unsplash.com/random/1', title: 'Title 1', author: 'Mario Rossi', tag: '#tag1' },
-  { id: 2, imgUrl: 'https://source.unsplash.com/random/2', title: 'Title 2', author: 'Luigi Bianchi', tag: '#tag2' },
-  { id: 3, imgUrl: 'https://source.unsplash.com/random/1', title: 'Title 3', author: 'Mario Rossi', tag: '#tag1' },
-  { id: 4, imgUrl: 'https://source.unsplash.com/random/2', title: 'Title 4', author: 'Luigi Bianchi', tag: '#tag2' },
-  { id: 5, imgUrl: 'https://source.unsplash.com/random/1', title: 'Title 5', author: 'Mario Rossi', tag: '#tag1' },
-  { id: 6, imgUrl: 'https://source.unsplash.com/random/2', title: 'Title 6', author: 'Luigi Bianchi', tag: '#tag2' },
-  { id: 7, imgUrl: 'https://source.unsplash.com/random/1', title: 'Title 7', author: 'Mario Rossi', tag: '#tag1' },
-  { id: 8, imgUrl: 'https://source.unsplash.com/random/2', title: 'Title 8', author: 'Luigi Bianchi', tag: '#tag2' },
+  { id: 1, imgUrl: 'https://source.unsplash.com/random/?Malindi', title: 'My City', author: 'Mario Rossi', tag: '#tag1' },
+  { id: 2, imgUrl: 'https://source.unsplash.com/random/?Kilifi', title: 'Title 2', author: 'Luigi Bianchi', tag: '#tag2' },
+  { id: 3, imgUrl: 'https://source.unsplash.com/random/?Watamu', title: 'Sports', author: 'Mario Rossi', tag: '#tag1' },
+  { id: 4, imgUrl: 'https://source.unsplash.com/random/?Gede,ruins', title: 'Tourism', author: 'Luigi Bianchi', tag: '#tag2' },
+  { id: 5, imgUrl: 'https://source.unsplash.com/random/?Lamu', title: 'Gallery', author: 'Mario Rossi', tag: '#tag1' },
+  { id: 6, imgUrl: 'https://source.unsplash.com/random/?coconuts', title: 'Dining', author: 'Luigi Bianchi', tag: '#tag2' },
+  { id: 7, imgUrl: 'https://source.unsplash.com/random/?Culture_festival', title: 'Culture', author: 'Mario Rossi', tag: '#tag1' },
+  { id: 8, imgUrl: 'https://source.unsplash.com/random/?Events', title: 'Events', author: 'Luigi Bianchi', tag: '#tag2' },
   // Add more card data as needed
 ];
 
-const Masonry: React.FC = () => {
+
+
+const IndexPage: React.FC = () => {
   return (
-    <div className={styles.masonry}>
+    <MasonryLayout breakpointCols={{ default: 3,
+      1100: 3,
+      700: 2,
+      500: 1 }}>
+      {/* Your Masonry items */}
       {cardData.map((card) => (
         <div className={styles.grid} key={card.id}>
           <img src={card.imgUrl} alt="Card" />
@@ -41,8 +48,9 @@ const Masonry: React.FC = () => {
           </div>
         </div>
       ))}
-    </div>
+      {/* Add more items as needed */}
+    </MasonryLayout>
   );
 };
 
-export default Masonry;
+export default IndexPage;
