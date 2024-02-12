@@ -4,8 +4,10 @@
 
 .Masonry_myMasonGrid__gT1kL { /* Not needed if autoprefixing */ /* Not needed if autoprefixing */
   display: flex;
-  margin-left: -30px; /* gutter size offset */
+  margin-left: 10px; /* gutter size offset */
+  margin-right: 10px;
   width: auto;
+  margin-top: 2rem;
 }
 .Masonry_myMasonGrid_column__cYnCA {
   padding-left: 30px; /* gutter size */

@@ -32,21 +32,19 @@ const IndexPage: React.FC = () => {
     <MasonryLayout breakpointCols={{ default: 3,
       1100: 3,
       700: 2,
-      500: 1 }}>
+      500: 1 }} >
       {/* Your Masonry items */}
       {cardData.map((card) => (
         <div className={styles.grid} key={card.id}>
           <img src={card.imgUrl} alt="Card" />
           <div className={styles.grid__body}>
             <div className="relative">
-              <a className={styles.grid__link} target="_blank" href="/"></a>
+              <a className={styles.grid__link} href={`blog/${card.tag}`}></a>
               <h1 className={styles.grid__title}>{card.title}</h1>
               <p className={styles.grid__author}>{card.author}</p>
             </div>
             <div className="mt-auto">
-              <Link to={`blog/${card.tag}'}>
-                <span className={styles.grid__tag}>{card.tag}</span>
-              </Link> 
+                <span className={styles.grid__tag}>#{card.tag}</span>
             </div>
           </div>
         </div>
