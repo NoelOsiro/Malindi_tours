@@ -52,9 +52,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} leading-normal tracking-normal text-white gradient`}>
-      <Navbar />
-        {children}</body>
+        <Navbar />
+        {children}
         <Footer sections={footerSections} />
+      </body>
+
     </html>
   );
 }
