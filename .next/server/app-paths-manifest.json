@@ -1,7 +1,11 @@
 {
-  "/page": "app/page.js",
+  "/_not-found": "app/_not-found.js",
+  "/auth/callback/route": "app/auth/callback/route.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/blog/page": "app/blog/page.js",
+  "/login/page": "app/login/page.js",
+  "/page": "app/page.js",
+  "/register/page": "app/register/page.js",
+  "/blog/[category]/[slug]/page": "app/blog/[category]/[slug]/page.js",
   "/blog/[category]/page": "app/blog/[category]/page.js",
-  "/blog/[category]/[slug]/page": "app/blog/[category]/[slug]/page.js"
+  "/blog/page": "app/blog/page.js"
 }
