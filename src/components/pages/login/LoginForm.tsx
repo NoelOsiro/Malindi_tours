@@ -10,9 +10,10 @@ interface LoginFormProps {
     };
     handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
     handleSubmit: (e: MouseEvent<HTMLButtonElement>) => void;
+    loading: boolean;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ formData, formErrors, handleInputChange, handleSubmit }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ formData, formErrors, handleInputChange, handleSubmit,loading }) => {
     return (
         <div >
             
@@ -49,7 +50,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ formData, formErrors, handleInput
                 onClick={handleSubmit}
                 className="w-full bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
             >
-                Sign In
+                {loading ? 'Loading...' : 'Login'}
             </button>
         </div>
     );

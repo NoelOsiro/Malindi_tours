@@ -5,6 +5,7 @@ interface RegisterFormProps {
         email: string;
         password: string;
         confirmPassword: string;
+        
     };
     formErrors: {
         email: string;
@@ -13,12 +14,13 @@ interface RegisterFormProps {
     };
     handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
     handleSubmit: (e: MouseEvent<HTMLButtonElement>) => void;
+    loading: boolean;
 }
 
-const RegisterForm: React.FC<RegisterFormProps> = ({ formData, formErrors, handleInputChange, handleSubmit }) => {
+const RegisterForm: React.FC<RegisterFormProps> = ({ formData, formErrors, handleInputChange, handleSubmit,loading }) => {
     return (
         <div >
-            <h2 className="text-4xl font-semibold text-white mb-8">Welcome back!</h2>
+            
             {/* Email input */}
             <div className="mb-4">
                 <input
@@ -66,7 +68,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ formData, formErrors, handl
                 onClick={handleSubmit}
                 className="w-full bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
             >
-                Sign Up
+                {loading ? 'Loading...' : 'Sign Up'}
             </button>
         </div>
     );

@@ -5,9 +5,11 @@ import LoginForm from '../../components/pages/login/LoginForm';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Database } from '../lib/supabase';
 import Alert from '@/components/Alert/Alert';
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
     const supabase = createClientComponentClient<Database>()
+    const router = useRouter()
     // State for form fields
     const [formData, setFormData] = useState({
         email: '',
@@ -63,7 +65,7 @@ export default function LoginPage() {
         try {
             await supabase.auth.signInWithPassword(formData);
             // // If login is successful, you can redirect to another page
-            // router.push('/dashboard');
+            router.push('/');
         } catch (error:any) {
             setErrorMessage('Error: ' + error.message);
         } finally {
@@ -86,13 +88,13 @@ export default function LoginPage() {
                             <h2 className="text-4xl font-semibold text-white mb-8">MaliCul</h2>
                         </h1>
                         <h2 className="text-4xl font-semibold text-white mb-8">Welcome back!</h2>
-                        {loading && <p>Loading...</p>}
                         {errorMessage && <Alert type="error" message={errorMessage} />}
                         <LoginForm
                             formData={formData}
                             formErrors={formErrors}
                             handleInputChange={handleInputChange}
-                            handleSubmit={handleSubmit} />
+                            handleSubmit={handleSubmit}
+                            loading={loading} />
 
                     </div>
 
