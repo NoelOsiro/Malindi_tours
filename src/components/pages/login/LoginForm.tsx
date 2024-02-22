@@ -1,5 +1,4 @@
-import React, { ChangeEvent, FormEvent, MouseEvent } from 'react';
-
+import React, { ChangeEvent, MouseEvent } from 'react';
 interface LoginFormProps {
     formData: {
         email: string;
@@ -16,7 +15,7 @@ interface LoginFormProps {
 const LoginForm: React.FC<LoginFormProps> = ({ formData, formErrors, handleInputChange, handleSubmit }) => {
     return (
         <div >
-            <h2 className="text-4xl font-semibold text-white mb-8">Welcome back!</h2>
+            
             {/* Email input */}
             <div className="mb-4">
                 <input
