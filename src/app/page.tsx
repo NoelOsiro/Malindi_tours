@@ -4,7 +4,6 @@ import Hero from "@/components/Hero/Hero";
 import Navbar from "@/components/Navbar/Navbar";
 import Title from "@/components/Title/Title";
 import Title2 from "@/components/Title/Title2";
-import Image from "next/image";
 
 export default function Home() {
   const items = [
@@ -63,12 +62,13 @@ export default function Home() {
   return (
     <main className="">
       <Navbar />
-      <Hero 
-        title="Main Hero Message to sell yourself!"
-        subTitle="Sub-hero message, not too long and not too short. Make it just right!"
-        buttonText="Subscribe"
-        imageUrl="./hero.png"
+      <Hero
+        title="Embark on a Cultural Coast Odyssey"
+        subTitle="Journey into the heart of Malindi's rich heritage. Let the stories of the Swahili Coast unfold, weaving a tapestry that transcends time and tradition."
+        buttonText="Start Your Odyssey"
+        imageUrl="/hero.png"
       />
+
       <div className="relative -mt-12 lg:-mt-24">
         <svg viewBox="0 0 1428 174" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
           <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
