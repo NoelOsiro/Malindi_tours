@@ -1,7 +1,7 @@
 'use client'
 import { ChangeEvent, MouseEvent, useState } from 'react';
-import BackgroundSection from './components/BackgroundSection';
-import RegisterForm from './components/RegisterForm';
+import BackgroundSection from '../../components/pages/register/BackgroundSection';
+import RegisterForm from '../../components/pages/register/RegisterForm';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Database } from '../lib/supabase';
 import { useRouter } from 'next/navigation';
