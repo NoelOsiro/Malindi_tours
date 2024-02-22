@@ -4,7 +4,26 @@
 
 
 .gradient {
-  background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+  background: linear-gradient(90deg, #338fd5 0%, #51dada 100%);
+}
+.gradient-text {
+  color: #338fd5;
+}
+/* Default styles for larger screens */
+
+@media screen and (max-width: 786px) {
+  .sidenav {
+    height: 100vh;
+    width: 60%;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #f0f0f0; /* Add your background color here */ /* Add your background color here */
+    
+  }
+  a.inline-block.text-black.no-underline{
+    margin-top: 10px;
+  }
 }
 .triangle {
   width: 0;
