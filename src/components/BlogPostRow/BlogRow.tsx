@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Database } from '@/app/lib/supabase';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import React from 'react';
@@ -8,45 +9,38 @@ interface Card {
   imageUrl: string;
   description: string;
 }
+
 interface Post {
-  // Define the structure of a Post row
   post_id: string;
   post_content: string;
-  imageURL:string;
+  imageURL: string;
   title: string;
   description: string;
   category: string;
 }
 
-const cards: Card[] = [
-  {
-    category: 'Reliable Schemas',
-    title: 'What Zombies Can Teach You About Food',
-    imageUrl: 'https://source.unsplash.com/Lki74Jj7H-U/400x300',
-    description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla delectus corporis commodi aperiam, amet cupiditate?',
-  },
-  {
-    category: 'Client-based Adoption',
-    title: 'Old School Art',
-    imageUrl: 'https://source.unsplash.com/L9_6GOv40_E/400x300',
-    description: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla delectus.',
-  },
-  {
-    category: 'Intellectual Capital',
-    title: '5 Things To Do About Rain',
-    imageUrl: 'https://source.unsplash.com/7JX0-bfiuxQ/400x300',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione, neque. Eius, ea possimus.',
-  },
-];
-const getData = async ()=>  {
-  const supabase = createClientComponentClient<Database>()
-  let { data, error } = await supabase.rpc('get_top_liked_posts')
-  if (error) console.error(error)
-  return data
-}
+const BlogRow: React.FC = () => {
+  const [posts, setPosts] = useState<Post[] | null>(null);
+  const [loading, setLoading] = useState(true);
 
-const BlogRow: React.FC = async () => {
-  const data = await getData()
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const supabase = createClientComponentClient<Database>();
+        const { data, error } = await supabase.rpc('get_top_liked_posts');
+        if (error) {
+          console.error(error);
+        } else {
+          setPosts(data);
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []); // Run the effect only once after the initial render
+
   return (
     <section className="flex flex-col justify-center max-w-6xl min-h-screen px-4 py-10 mx-auto sm:px-6">
       <div className="flex flex-wrap items-center justify-between mb-8">
@@ -58,44 +52,32 @@ const BlogRow: React.FC = async () => {
         </a>
       </div>
       <div className="flex flex-wrap -mx-4">
-        {data.map((post:Post) => (
-          <div key={post.post_id} className="w-full max-w-full mb-8 sm:w-1/2 px-4 lg:w-1/3 flex flex-col">
-            <img src={post.imageURL} alt="Card img" className="object-cover object-center w-full h-48" />
-            <div className="flex flex-grow">
-              <div className="triangle"></div>
-              <div className="flex flex-col justify-between px-4 py-6 bg-white border border-gray-400 text">
-                <div>
-                  <a href="#" className="inline-block mb-4 text-xs font-bold capitalize border-b-2 border-blue-600 hover:text-blue-600">{post.category}</a>
-                  <a href="#" className="block mb-4 text-2xl font-black leading-tight hover:underline hover:text-blue-600">{post.title}</a>
-                  <p className="mb-4">{post.description}</p>
-                </div>
-                <div>
-                  <a href="#" className="inline-block pb-1 mt-2 text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600">Read More</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="flex flex-wrap -mx-4">
-        {cards.map((card, index) => (
-          <div key={index} className="w-full max-w-full mb-8 sm:w-1/2 px-4 lg:w-1/3 flex flex-col">
-            <img src={card.imageUrl} alt="Card img" className="object-cover object-center w-full h-48" />
-            <div className="flex flex-grow">
-              <div className="triangle"></div>
-              <div className="flex flex-col justify-between px-4 py-6 bg-white border border-gray-400 text">
-                <div>
-                  <a href="#" className="inline-block mb-4 text-xs font-bold capitalize border-b-2 border-blue-600 hover:text-blue-600">{card.category}</a>
-                  <a href="#" className="block mb-4 text-2xl font-black leading-tight hover:underline hover:text-blue-600">{card.title}</a>
-                  <p className="mb-4">{card.description}</p>
-                </div>
-                <div>
-                  <a href="#" className="inline-block pb-1 mt-2 text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600">Read More</a>
+        {loading && <p>Loading...</p>}
+        {posts &&
+          posts.map((post: Post) => (
+            <div key={post.post_id} className="w-full max-w-full mb-8 sm:w-1/2 px-4 lg:w-1/3 flex flex-col">
+              <img src={post.imageURL} alt="Card img" className="object-cover object-center w-full h-48" />
+              <div className="flex flex-grow">
+                <div className="triangle"></div>
+                <div className="flex flex-col justify-between px-4 py-6 bg-white border border-gray-400 text">
+                  <div>
+                    <a href="#" className="inline-block mb-4 text-xs font-bold capitalize border-b-2 border-blue-600 hover:text-blue-600">
+                      {post.category}
+                    </a>
+                    <a href="#" className="block mb-4 text-2xl font-bold text-black leading-tight hover:underline hover:text-blue-600">
+                      {post.title}
+                    </a>
+                    <p className="text-black mb-4">{post.description}</p>
+                  </div>
+                  <div>
+                    <a href={`/posts/${post.post_id}`} className="inline-block pb-1 mt-2 text-base font-black text-blue-600 uppercase border-b border-transparent hover:border-blue-600">
+                      Read More
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </section>
   );
