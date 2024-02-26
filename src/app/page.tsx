@@ -94,6 +94,7 @@ export default function Home() {
         paraText={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula."}
         buttonText={""} imageUrl={""}
          />
+         
       <Title2 items={items} />
       <svg className="wave-top" viewBox="0 0 1439 147" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
         <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">

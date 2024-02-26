@@ -22,8 +22,8 @@ const Title: React.FC<TitleProps> = ({ title, subTitle, paraText, buttonText, im
   }, []);
   return (
     <section className="bg-white border-b py-8">
-      <div className="container max-w-5xl mx-auto m-8"  data-aos="fade-up">
-        <h2 className="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
+      <div className="container max-w-5xl mx-auto m-8"  >
+        <h2 className="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800" data-aos="fade-up">
           {title}
         </h2>
         <BlogRow/>

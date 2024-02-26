@@ -27,7 +27,7 @@ export interface Database {
           post_content: string;
           like_count: number;
           created_at: string;
-          imageURL:string;
+          images:string[];
           title: string;
           description: string;
           category: string;
