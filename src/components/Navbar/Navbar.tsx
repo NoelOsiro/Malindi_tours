@@ -2,6 +2,7 @@
 // components/Navbar.tsx
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 // Define an array of navigation links
 const navLinks = [
@@ -15,6 +16,7 @@ const navLinks = [
 const Navbar: React.FC = () => {
   const [scrolling, setScrolling] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -81,9 +83,9 @@ const Navbar: React.FC = () => {
             {navLinks.map((link, index) => (
               <li className="mr-3" key={index}>
                 <a
-                  className={`inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4 font-bold ${
-                    scrolling ? 'text-white' : ''
-                  }`}
+                  className={`inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4
+                  ${scrolling ? 'text-white' : ''}
+                  ${pathname === link.href ? 'font-bold': ''}`}
                   href={link.href}
                 >
                   {link.label}
