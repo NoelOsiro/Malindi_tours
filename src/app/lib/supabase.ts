@@ -1,5 +1,7 @@
 // supabaseTypes.ts
 
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+
 /* eslint-disable*/
 export type Json =
   | string
@@ -124,3 +126,5 @@ export type Enums<
   : PublicEnumNameOrOptions extends keyof Database['public']['Enums']
   ? Database['public']['Enums'][PublicEnumNameOrOptions]
   : never;
+
+export const supabase = createClientComponentClient<Database>()

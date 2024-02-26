@@ -2,13 +2,11 @@
 import { ChangeEvent, MouseEvent, useState } from 'react';
 import BackgroundSection from '../../components/pages/login/BackgroundSection';
 import LoginForm from '../../components/pages/login/LoginForm';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { Database } from '../lib/supabase';
 import Alert from '@/components/Alert/Alert';
 import { useRouter } from 'next/navigation';
+import { supabase } from '../lib/supabase';
 
 export default function LoginPage() {
-    const supabase = createClientComponentClient<Database>()
     const router = useRouter()
     // State for form fields
     const [formData, setFormData] = useState({

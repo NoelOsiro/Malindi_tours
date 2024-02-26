@@ -11,17 +11,47 @@ interface FooterSection {
   links: FooterLink[];
 }
 
-interface FooterProps {
-  sections: FooterSection[];
-}
 
+const footerSections: FooterSection[] = [
+  {
+    title: 'Links',
+    links: [
+      { title: 'FAQ', url: '#' },
+      { title: 'Help', url: '#' },
+      { title: 'Support', url: '#' },
+    ],
+  },
+  {
+    title: 'Legal',
+    links: [
+      { title: 'Terms', url: '#' },
+      { title: 'Privacy', url: '#' },
+    ],
+  },
+  {
+    title: 'Social',
+    links: [
+      { title: 'Facebook', url: '#' },
+      { title: 'Linkedin', url: '#' },
+      { title: 'Twitter', url: '#' },
+    ],
+  },
+  {
+    title: 'Company',
+    links: [
+      { title: 'Official Blog', url: '#' },
+      { title: 'About Us', url: '#' },
+      { title: 'Contact', url: '#' },
+    ],
+  },
+];
 // Footer component
-const Footer: React.FC<FooterProps> = ({ sections }) => {
+const Footer: React.FC = () => {
   return (
     <footer className="bg-white">
       <div className="container mx-auto px-8">
         <div className="w-full flex flex-col md:flex-row py-6">
-          {sections.map((section, index) => (
+          {footerSections.map((section, index) => (
             <div key={index} className="flex-1">
               <p className="uppercase text-gray-500 md:mb-6">{section.title}</p>
               <ul className="list-reset mb-6">

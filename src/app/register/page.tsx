@@ -2,13 +2,12 @@
 import { ChangeEvent, MouseEvent, useState } from 'react';
 import BackgroundSection from '@/components/pages/register/BackgroundSection';
 import RegisterForm from '@/components/pages/register/RegisterForm';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import { Database } from '../lib/supabase';
 import Alert from '@/components/Alert/Alert';
 import { useRouter } from 'next/navigation';
+import { supabase } from '../lib/supabase';
 
 export default function RegisterPage() {
-    const supabase = createClientComponentClient<Database>()
+
     const router = useRouter()
     // State for form fields
     const [formData, setFormData] = useState({
