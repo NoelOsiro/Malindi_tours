@@ -5,6 +5,7 @@ import MainContent from "@/components/Post/MainContent";
 import Sidebar from "@/components/Post/Sidebar";
 import { usePathname } from "next/navigation";
 import { QueryData } from '@supabase/supabase-js';
+
 export interface IpostData {
     post_id: string;
     post_content: string;
@@ -16,6 +17,7 @@ export interface IpostData {
     profiles: {
         username: string;
         avatar_url:string;
+        bio:string;
     }
   }
 const Post: React.FC = () => {
@@ -36,7 +38,7 @@ const Post: React.FC = () => {
                 images,
                 title,
                 description,
-                profiles (username,avatar_url)
+                profiles (username,avatar_url,bio)
             `)
             .eq('post_id', uuid)
             .single();
@@ -61,7 +63,7 @@ const Post: React.FC = () => {
         <div className="container mx-auto px-2 mt-24">
             <section className="grid md:grid-cols-3 mt-12">
                 {postData && <MainContent postData={postData} />}
-                <Sidebar />
+                {postData && <Sidebar profileData={postData.profiles} />}
             </section>
         </div>
     );
