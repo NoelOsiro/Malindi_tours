@@ -26,39 +26,6 @@ export default function Home() {
       buttonLink: "#"
     }
   ];
-  const footerSections = [
-    {
-      title: 'Links',
-      links: [
-        { title: 'FAQ', url: '#' },
-        { title: 'Help', url: '#' },
-        { title: 'Support', url: '#' },
-      ],
-    },
-    {
-      title: 'Legal',
-      links: [
-        { title: 'Terms', url: '#' },
-        { title: 'Privacy', url: '#' },
-      ],
-    },
-    {
-      title: 'Social',
-      links: [
-        { title: 'Facebook', url: '#' },
-        { title: 'Linkedin', url: '#' },
-        { title: 'Twitter', url: '#' },
-      ],
-    },
-    {
-      title: 'Company',
-      links: [
-        { title: 'Official Blog', url: '#' },
-        { title: 'About Us', url: '#' },
-        { title: 'Contact', url: '#' },
-      ],
-    },
-  ];
   return (
     <main className="">
       <Navbar />
@@ -118,7 +85,7 @@ export default function Home() {
         </g>
       </svg>
       <CallToaction message="Main Hero Message to sell yourself!" actionText="Action!" />
-      <Footer sections={footerSections} />
+      <Footer/>
     </main>
   );
 }

@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
   return (
     <nav
       id="header"
-      className={`fixed w-full z-30 top-0 text-white ${scrolling ? '' : 'bg-white shadow'}`}
+      className={`fixed w-full h-[65px] px-6 z-30 top-0 text-white ${scrolling ? '' : 'bg-white shadow'}`}
     >
       <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
         {/* Your logo and brand */}
@@ -52,7 +52,7 @@ const Navbar: React.FC = () => {
             } no-underline hover:no-underline font-bold text-2xl lg:text-4xl`}
             href="/"
           >
-            <Image src="/beach.svg" alt="Your SVG" className="mr-4" width={50} height={50} />
+            <Image src="/beach.svg" alt="Malicul" className="mr-4" width={45} height={45} />
             MaliCul
           </a>
         </div>

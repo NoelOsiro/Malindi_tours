@@ -1,66 +1,73 @@
-import React from 'react';
+'use client'
+import { useState, useEffect } from 'react';
+import { supabase } from '@/app/lib/supabase';
+import { format } from 'date-fns';
 
-interface Card {
-  category: string;
-  date: string;
-  imageUrl: string;
+interface IpostData {
+  post_id: string;
+  post_content: string;
+  created_at: string;
+  category: null;
+  images: string[];
   title: string;
 }
 
-const cards: Card[] = [
-  {
-    category: 'Art',
-    date: '31 Jul',
-    imageUrl: 'https://source.unsplash.com/random/245x320',
-    title: 'Fuga ea ullam earum assumenda, beatae labore eligendi.'
-  },
-  {
-    category: 'Politics',
-    date: '04 Aug',
-    imageUrl: 'https://source.unsplash.com/random/240x320',
-    title: 'Autem sunt tempora mollitia magnam non voluptates'
-  },
-  {
-    category: 'Health',
-    date: '01 Aug',
-    imageUrl: 'https://source.unsplash.com/random/241x320',
-    title: 'Inventore reiciendis aliquam excepturi'
-  },
-  {
-    category: 'Science',
-    date: '28 Jul',
-    imageUrl: 'https://source.unsplash.com/random/242x320',
-    title: 'Officiis mollitia dignissimos commodi optio vero animi'
-  },
-  {
-    category: 'Sports',
-    date: '19 Jul',
-    imageUrl: 'https://source.unsplash.com/random/243x320',
-    title: 'Doloribus sit illo necessitatibus architecto exercitationem enim'
-  }
-];
-
 const Category2: React.FC = () => {
+  const [posts, setPosts] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data, error } = await supabase
+          .from('posts')
+          .select('post_id,post_content,created_at,category,images,title')
+          .range(0, 8);
+        if (error) {
+          throw new Error('Failed to fetch data');
+        }
+
+        setPosts(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return {
+      day: format(date, 'do'),
+      month: format(date, 'MMM'),
+    }
+  };
+
   return (
-    <div className="max-w-screen-xl p-5 mx-auto dark:bg-gray-800 dark:text-gray-100">
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 md:gap-0 lg:grid-rows-2">
-        {cards.map((card, index) => (
-          <div key={index} className="relative flex items-end justify-start w-full text-left bg-center bg-cover cursor-pointer h-96 md:col-span-2 lg:row-span-2 lg:h-full group dark:bg-gray-500" style={{ backgroundImage: `url(${card.imageUrl})` }}>
-            <div className="absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-b dark:via-transparent dark:from-gray-900 dark:to-gray-900"></div>
-            <div className="absolute top-0 left-0 right-0 flex items-center justify-between mx-5 mt-3">
-              <a rel="noopener noreferrer" href="#" className="px-3 py-2 text-xs font-semibold tracki uppercase hover:underline dark:text-gray-100 dark:bg-violet-400">{card.category}</a>
-              <div className="flex flex-col justify-start text-center dark:text-gray-100">
-                <span className="text-3xl font-semibold leadi tracki">{card.date}</span>
-                <span className="leadi uppercase">Jul</span>
+    <section className="mx-auto mt-4 p-5">
+      <h1 className='text-6xl text-gray-800 hover:text-white'>Latest Posts</h1>
+      <div className="w-[70%] border-b-4 border-gray mb-8 mt-4"></div>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {posts.map((post) => (
+          <a key={post.post_id} href={`/posts/${post.post_id}`}>
+            <div className="relative flex flex-col justify-end text-left bg-center bg-cover h-96 md:col-span-1 lg:col-span-1 rounded-md" style={{ backgroundImage: `url(${post.images[0]})` }}>
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900 rounded-md "></div>
+              <div className="absolute top-0 left-0 right-0 flex items-center justify-between mx-5 mt-3">
+                <span className="px-3 py-2 text-xs font-semibold text-gray-100 bg-violet-400 uppercase hover:underline">{post.category}</span>
+                <div className="flex flex-col items-center justify-start text-center text-gray-100">
+                  <span className="text-3xl font-semibold">{formatDate(post.created_at).day}</span>
+                  <span className="uppercase">{formatDate(post.created_at).month}</span>
+                </div>
               </div>
+              <h2 className="z-10 p-5">
+                <span className="font-medium text-md lg:text-lg hover:underline">{post.title}</span>
+              </h2>
             </div>
-            <h2 className="z-10 p-5">
-              <a rel="noopener noreferrer" href="#" className="font-medium text-md group-hover:underline lg:text-2xl lg:font-semibold dark:text-gray-100">{card.title}</a>
-            </h2>
-          </div>
+          </a>
         ))}
+
       </div>
-    </div>
+    </section>
   );
 };
 
