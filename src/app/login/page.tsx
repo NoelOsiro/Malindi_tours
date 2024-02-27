@@ -1,3 +1,4 @@
+'use client'
 import { ChangeEvent, MouseEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import BackgroundSection from '../../components/pages/login/BackgroundSection';
