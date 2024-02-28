@@ -2,7 +2,8 @@
 // components/Navbar.tsx
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { createClient } from '@/utils/supabase/client';
 
 // Define an array of navigation links
 const navLinks = [
@@ -17,6 +18,7 @@ const Navbar: React.FC = () => {
   const [scrolling, setScrolling] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,6 +39,12 @@ const Navbar: React.FC = () => {
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
   };
+
+  const handleSignOut = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    router.refresh()
+  }
 
   return (
     <nav
@@ -95,6 +103,7 @@ const Navbar: React.FC = () => {
           </ul>
 
           {/* Your post button */}
+          <div className="flex items-center space-x-2">
           <button
             id="navAction"
             className={`mx-auto lg:mx-0 hover:underline ${
@@ -103,6 +112,17 @@ const Navbar: React.FC = () => {
           >
             Post
           </button>
+          <button
+            id="navAction"
+            onClick={handleSignOut}
+            className={`mx-auto lg:mx-0 hover:underline ${
+              scrolling ? 'bg-white' : 'gradient text-white'
+            } text-gray-800 rounded-full mt-4 lg:mt-0 py-2 px-4 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out`}
+          >
+            Logout
+          </button>
+          </div>
+          
         </div>
       </div>
       <hr className="border-b border-gray-100 opacity-25 my-0 py-0" />
