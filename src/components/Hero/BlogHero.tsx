@@ -11,15 +11,15 @@ interface HeroProps {
 const BlogHero: React.FC<HeroProps> = ({ title, subTitle, buttonText, heroText }) => {
     return (
         <section>
-            <div className="bg-black text-white py-20">
+            <div className="bg-black text-white pt-20 pb-10 rounded-lg">
                 <div className="container mx-auto flex flex-col md:flex-row items-center my-12 md:my-24">
                     <div className="flex flex-col w-full lg:w-1/3 justify-center items-start p-8">
-                        <h1 className="text-3xl md:text-5xl p-2 text-yellow-300 tracking-loose">{title}</h1>
+                        <h1 className="text-3xl md:text-5xl py-2 gradient-text tracking-loose">{title}</h1>
                         <h2 className="text-3xl md:text-5xl leading-relaxed md:leading-snug mb-2">{subTitle}</h2>
                         <p className="text-sm md:text-base text-gray-50 mb-4">{heroText}</p>
-                        <a href="/register"
-                            className="bg-transparent hover:bg-yellow-300 text-yellow-300 hover:text-black rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-300 hover:border-transparent">
-                            {buttonText}</a>
+                        <a href='/register' className="mx-auto lg:mx-0 hover:underline gradient text-black font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                            {buttonText}
+                        </a>
                     </div>
                     <div className="p-8 mt-12 mb-6 md:mb-0 md:mt-0 ml-0 md:ml-12 lg:w-2/3  justify-center">
                         <div className="h-48 flex flex-wrap content-center">

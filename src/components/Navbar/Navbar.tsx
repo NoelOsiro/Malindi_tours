@@ -2,6 +2,7 @@
 // components/Navbar.tsx
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 
 // Define an array of navigation links
 const navLinks = [
@@ -15,6 +16,7 @@ const navLinks = [
 const Navbar: React.FC = () => {
   const [scrolling, setScrolling] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,7 +41,7 @@ const Navbar: React.FC = () => {
   return (
     <nav
       id="header"
-      className={`fixed w-full z-30 top-0 text-white ${scrolling ? '' : 'bg-white shadow'}`}
+      className={`fixed w-full h-[65px] px-6 z-30 top-0 text-white ${scrolling ? '' : 'bg-white shadow'}`}
     >
       <div className="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
         {/* Your logo and brand */}
@@ -50,7 +52,7 @@ const Navbar: React.FC = () => {
             } no-underline hover:no-underline font-bold text-2xl lg:text-4xl`}
             href="/"
           >
-            <Image src="/beach.svg" alt="Your SVG" className="mr-4" width={50} height={50} />
+            <Image src="/beach.svg" alt="Malicul" className="mr-4" width={45} height={45} />
             MaliCul
           </a>
         </div>
@@ -81,9 +83,9 @@ const Navbar: React.FC = () => {
             {navLinks.map((link, index) => (
               <li className="mr-3" key={index}>
                 <a
-                  className={`inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4 font-bold ${
-                    scrolling ? 'text-white' : ''
-                  }`}
+                  className={`inline-block text-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4
+                  ${scrolling ? 'text-white' : ''}
+                  ${pathname === link.href ? 'font-bold': ''}`}
                   href={link.href}
                 >
                   {link.label}
