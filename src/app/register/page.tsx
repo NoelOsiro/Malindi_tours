@@ -4,7 +4,7 @@ import BackgroundSection from '@/components/pages/register/BackgroundSection';
 import RegisterForm from '@/components/pages/register/RegisterForm';
 import Alert from '@/components/Alert/Alert';
 import { useRouter } from 'next/navigation';
-import { supabase } from '../lib/supabase';
+
 
 export default function RegisterPage() {
 
@@ -71,7 +71,7 @@ export default function RegisterPage() {
             setLoading(false);
         }
         try {
-            await supabase.auth.signUp(formData);
+            
             // // If login is successful, you can redirect to another page
             router.push('/login');
         } catch (error:any) {

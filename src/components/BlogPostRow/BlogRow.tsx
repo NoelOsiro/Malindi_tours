@@ -1,8 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react';
-import { Database } from '@/app/lib/supabase';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import React from 'react';
+import { createClient } from '@/utils/supabase/client';
 
 interface Card {
   category: string;
@@ -27,7 +26,7 @@ const BlogRow: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const supabase = createClientComponentClient<Database>();
+        const supabase = createClient();
         const { data, error } = await supabase.rpc('get_top_liked_posts');
         if (error) {
           console.error(error);
@@ -65,7 +64,7 @@ const BlogRow: React.FC = () => {
                     <a href="#" className="inline-block mb-4 text-xs font-bold text-black capitalize border-b-2 border-blue-600 hover:text-blue-600">
                       {post.category}
                     </a>
-                    <a href="#" className="block mb-4 text-2xl font-bold text-black leading-tight hover:underline hover:text-blue-600">
+                    <a href={`/posts/${post.post_id}`} className="block mb-4 text-2xl font-bold text-black leading-tight hover:underline hover:text-blue-600">
                       {post.title}
                     </a>
                     <p className="text-black mb-4">{post.description}</p>
