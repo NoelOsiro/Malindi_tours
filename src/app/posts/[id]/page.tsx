@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import MainContent from "@/components/Post/MainContent";
 import Sidebar from "@/components/Post/Sidebar";
-import { usePathname } from "next/navigation";
+import { usePathname,useRouter } from "next/navigation";
 import { QueryData } from '@supabase/supabase-js';
 import { createClient } from '@/utils/supabase/client';
 
@@ -28,10 +28,11 @@ const Post: React.FC = async () => {
     const pathnameParts = pathname.split('/');
     const uuid = pathnameParts[pathnameParts.length - 1];
     const supabase = createClient();
+    const router = useRouter();
 
     const { data, error } = await supabase.auth.getUser()
     if (error || !data?.user) {
-        redirect('/login')
+        router.push('/login')
     }
     useEffect(() => {
         async function fetchData() {
