@@ -1,5 +1,22 @@
 {
-  "node": {},
+  "node": {
+    "6f8d013062d0aacab38e04c2e154c29147ae813b": {
+      "workers": {
+        "app/login/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fworkspaces%2FMalindi_tours%2Fsrc%2Fapp%2Flogin%2Factions.ts%22%2C%5B%22signup%22%2C%22login%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/login/page": "action-browser"
+      }
+    },
+    "902c091d9388e113896a87d4cf8a4861a639695e": {
+      "workers": {
+        "app/login/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fworkspaces%2FMalindi_tours%2Fsrc%2Fapp%2Flogin%2Factions.ts%22%2C%5B%22signup%22%2C%22login%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/login/page": "action-browser"
+      }
+    }
+  },
   "edge": {},
-  "encryptionKey": "wxjvwP28oKm6s20xy2TvZF8pKwI2jB3OP/sgJcJpFWA="
+  "encryptionKey": "9EPfQVzauLcWMq3beSC31Czz46OSQkBq02s3hXGSGK8="
 }

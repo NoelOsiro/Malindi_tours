@@ -4,8 +4,18 @@ import Hero from "@/components/Hero/Hero";
 import Navbar from "@/components/Navbar/Navbar";
 import Title from "@/components/Title/Title";
 import Title2 from "@/components/Title/Title2";
+import { redirect } from 'next/navigation'
+import { createClient } from '@/utils/supabase/server'
 
-export default function Home() {
+
+export default async function Home() {
+
+  const supabase = createClient()
+
+  const { data, error } = await supabase.auth.getUser()
+  if (error || !data?.user) {
+    redirect('/login')
+  }
   const items = [
     {
       title: "Item 1 Title",
@@ -26,6 +36,7 @@ export default function Home() {
       buttonLink: "#"
     }
   ];
+
   return (
     <main className="">
       <Navbar />
