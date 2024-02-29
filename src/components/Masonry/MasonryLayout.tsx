@@ -11,7 +11,6 @@ interface MasonryLayoutProps {
 const MasonryLayout: React.FC<MasonryLayoutProps> = ({
   children,
   breakpointCols,
-  className,
 }) => {
   return (
     <Masonry
