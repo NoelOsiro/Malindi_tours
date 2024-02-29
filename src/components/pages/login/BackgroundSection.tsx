@@ -12,7 +12,7 @@ const BackgroundSection = () => {
       {/* Content container */}
       <div className="w-full px-24 z-10">
         {/* Main heading */}
-        <h1 className="text-5xl font-bold text-left tracking-wide">Embrace Malindi's Cultural Heritage</h1>
+        <h1 className="text-5xl font-bold text-left tracking-wide">{`Embrace Malindi's Cultural Heritage`}</h1>
         {/* Description */}
         <p className="text-3xl my-4">Explore, preserve, and celebrate the unique traditions of Malindi, capturing the essence of its rich cultural tapestry.</p>
       </div>
