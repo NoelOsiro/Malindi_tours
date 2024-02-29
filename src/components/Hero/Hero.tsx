@@ -22,7 +22,7 @@ const Hero: React.FC<HeroProps> = ({ title, subTitle, buttonText, imageUrl }) =>
       <div className="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
 
         <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
-          <p className="uppercase tracking-loose w-full " data-aos="fade-right">What's your story?</p>
+          <p className="uppercase tracking-loose w-full " data-aos="fade-right">{`What's your story?`}</p>
           <h1 className="my-4 text-5xl font-bold leading-tight" data-aos="fade-in">
             {title}
           </h1>
