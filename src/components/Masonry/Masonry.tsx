@@ -35,7 +35,7 @@ const IndexPage: React.FC = () => {
           Categories
         </h2>
       </div>
-      <MasonryLayout breakpointCols={{
+      {/* <MasonryLayout breakpointCols={{
         default: 3,
         1100: 3,
         700: 2,
@@ -56,7 +56,7 @@ const IndexPage: React.FC = () => {
             </div>
           </div>
         ))}
-      </MasonryLayout>
+      </MasonryLayout> */}
     </>
 
   );
